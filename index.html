@@ -243,6 +243,10 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 .footer-legal{display:flex;gap:2rem;}
 .footer-legal a{font-size:0.68rem;color:rgba(255,255,255,0.28);text-decoration:none;cursor:pointer;transition:color 0.3s;}
 .footer-legal a:hover{color:var(--gold);}
+.footer-credit{display:flex;align-items:center;gap:0.55rem;font-size:0.68rem;color:rgba(255,255,255,0.38);text-decoration:none;letter-spacing:0.04em;transition:color 0.3s,opacity 0.3s;}
+.footer-credit:hover{color:var(--white);opacity:1;}
+.footer-credit img{height:32px;width:auto;display:block;opacity:0.9;transition:opacity 0.3s;}
+.footer-credit:hover img{opacity:1;}
 
 /* LEGAL */
 #legal-page{display:none;min-height:100vh;padding-top:90px;}
@@ -560,6 +564,7 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
     <div class="footer-bottom">
       <p>© 2025 Legrand Group Management. Tous droits réservés.</p>
       <div class="footer-legal"><a onclick="showLegal('cgu')">CGU</a><a onclick="showLegal('cgv')">CGV</a><a onclick="showLegal('privacy')">Confidentialité</a><a onclick="showLegal('reglement')">Règlement</a></div>
+      <a href="https://noventisdesign.com" target="_blank" rel="noopener" class="footer-credit" aria-label="Site fait par Noventis Design"><span>Site fait par</span><img src="noventis-logo.svg" alt="Noventis Design"></a>
     </div>
   </div>
 </footer>
