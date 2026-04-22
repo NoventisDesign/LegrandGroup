@@ -547,7 +547,8 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
         <div class="form-group"><label>Téléphone</label><input type="tel" id="phone" placeholder="+33 6 00 00 00 00"></div>
         <div class="form-group"><label>Service souhaité</label><select id="service"><option value="">Sélectionner un service</option><option>Business Affairs</option><option>Immobilier de Prestige</option><option>Événementiel &amp; RP</option><option>Style de Vie</option><option>Conciergerie d'Entreprise</option><option>Autre demande</option></select></div>
         <div class="form-group"><label>Message</label><textarea id="message" rows="4" placeholder="Décrivez votre demande..."></textarea></div>
-        <button class="form-submit" onclick="sendForm()">Envoyer ma demande</button>
+        <button class="form-submit" id="formSubmitBtn" onclick="sendForm()">Envoyer ma demande</button>
+        <p id="formStatus" style="margin-top:1rem;font-size:0.8rem;text-align:center;display:none;"></p>
       </div>
     </div>
   </div>
@@ -592,9 +593,47 @@ function toggleFaq(btn){
   if(!open)item.classList.add('open');
 }
 function sendForm(){
-  const v=id=>document.getElementById(id).value;
-  const body='Prénom: '+v('fname')+'\nNom: '+v('lname')+'\nTéléphone: '+v('phone')+'\nService: '+v('service')+'\n\n'+v('message');
-  window.location.href='mailto:contact@legrandgroupmanagement.com?subject=Demande — '+(v('service')||'Legrand Group')+'&body='+encodeURIComponent(body);
+  const v=id=>document.getElementById(id).value.trim();
+  const btn=document.getElementById('formSubmitBtn');
+  const status=document.getElementById('formStatus');
+  const showStatus=(msg,color)=>{status.textContent=msg;status.style.color=color;status.style.display='block';};
+  if(!v('fname')||!v('lname')||!v('email')||!v('message')){
+    showStatus('Merci de remplir prénom, nom, e-mail et message.','#c0392b');
+    return;
+  }
+  btn.disabled=true;
+  btn.textContent='Envoi en cours…';
+  showStatus('','');
+  fetch('https://formsubmit.co/ajax/contact@legrandgroupmanagement.com',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      Prénom:v('fname'),
+      Nom:v('lname'),
+      Email:v('email'),
+      Téléphone:v('phone'),
+      Service:v('service'),
+      Message:v('message'),
+      _subject:'Demande — '+(v('service')||'Legrand Group'),
+      _captcha:'false',
+      _template:'table'
+    })
+  }).then(r=>r.json()).then(d=>{
+    if(d.success==='true'||d.success===true){
+      showStatus('Merci, votre demande a bien été envoyée. Réponse sous 24 heures ouvrées.','#1e7e34');
+      ['fname','lname','email','phone','service','message'].forEach(id=>document.getElementById(id).value='');
+      btn.textContent='Envoyer ma demande';
+      btn.disabled=false;
+    }else{
+      showStatus("Une erreur est survenue. Merci de réessayer ou de nous écrire à contact@legrandgroupmanagement.com.",'#c0392b');
+      btn.textContent='Envoyer ma demande';
+      btn.disabled=false;
+    }
+  }).catch(()=>{
+    showStatus("Erreur réseau. Merci de réessayer ou de nous écrire à contact@legrandgroupmanagement.com.",'#c0392b');
+    btn.textContent='Envoyer ma demande';
+    btn.disabled=false;
+  });
 }
 const legal={
   cgu:{title:"Conditions Générales d'Utilisation",subtitle:"En vigueur au 1er janvier 2025",body:'<h2>Article 1 — Objet</h2><p>Les présentes CGU définissent les modalités d\'utilisation du site www.legrandgroupmanagement.com.</p><h2>Article 2 — Acceptation</h2><p>L\'accès au Site implique l\'acceptation pleine des présentes CGU.</p><h2>Article 3 — Propriété intellectuelle</h2><p>L\'ensemble des éléments du Site appartient à Legrand Group Management. Toute reproduction sans autorisation est interdite.</p><h2>Article 4 — Droit applicable</h2><p>Droit français. Tribunal compétent : Nice.</p>'},
