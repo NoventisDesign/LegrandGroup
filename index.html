@@ -36,6 +36,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 5%;display:fle
 nav.scrolled{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--border);padding:0.7rem 5%;}
 .nav-logo img{height:150px;width:auto;object-fit:contain;transition:height 0.35s;}
 nav.scrolled .nav-logo img{height:150px;}
+.nav-logo .logo-dark{display:none;}
+.nav-logo .logo-light{display:block;}
+nav.scrolled .nav-logo .logo-dark{display:block;}
+nav.scrolled .nav-logo .logo-light{display:none;}
 .nav-links{display:flex;gap:2.5rem;list-style:none;}
 .nav-links a{font-size:0.68rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.85);transition:color 0.3s;position:relative;}
 .nav-links a::after{content:"";position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s;}
@@ -292,7 +296,7 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 <body>
 
 <nav id="navbar">
-  <a href="#" class="nav-logo" onclick="showMain(event)"><img src="logo_legrandgroup.png" alt="Legrand Group Management"></a>
+  <a href="#" class="nav-logo" onclick="showMain(event)"><img class="logo-light" src="logo_legrandgroup_light.png" alt="Legrand Group Management"><img class="logo-dark" src="logo_legrandgroup.png" alt="Legrand Group Management"></a>
   <ul class="nav-links">
     <li><a href="#about" data-i18n="nav_about">À propos</a></li><li><a href="#services" data-i18n="nav_services">Services</a></li>
     <li><a href="#corporate" data-i18n="nav_corporate">Corporate</a></li><li><a href="#zones" data-i18n="nav_zones">Zones</a></li>
@@ -322,7 +326,7 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div><div class="hero-overlay"></div><div class="hero-overlay-b"></div>
-  <div class="hero-wm"><img src="logo_legrandgroup.png" alt=""></div>
+  <div class="hero-wm"><img src="logo_legrandgroup_light.png" alt=""></div>
   <div class="hero-content">
     <div class="hero-eyebrow"><span>Conciergerie de Luxe &amp; Business Affairs</span></div>
     <h1 class="hero-title">L'excellence<br>au service de<br><em>votre quotidien</em></h1>
@@ -406,7 +410,7 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 <!-- CORPORATE -->
 <section id="corporate">
   <div class="corp-bg"></div>
-  <div class="wm corp-wm"><img src="logo_legrandgroup.png" alt=""></div>
+  <div class="wm corp-wm"><img src="logo_legrandgroup_light.png" alt=""></div>
   <div class="corp-grid">
     <div class="corp-left">
       <span class="label">Pour les entreprises exigeantes</span>
@@ -451,7 +455,7 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 
 <!-- ZONES -->
 <section id="zones">
-  <div class="wm zones-wm"><img src="logo_legrandgroup.png" alt=""></div>
+  <div class="wm zones-wm"><img src="logo_legrandgroup_light.png" alt=""></div>
   <div class="zones-header">
     <span class="label">Présence internationale</span>
     <h2>Nos Zones<br><em class="italic">d'Intervention</em></h2>
@@ -553,10 +557,10 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 
 <!-- FOOTER -->
 <footer>
-  <div class="wm footer-wm"><img src="logo_legrandgroup.png" alt=""></div>
+  <div class="wm footer-wm"><img src="logo_legrandgroup_light.png" alt=""></div>
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><img src="logo_legrandgroup.png" alt="Legrand Group Management"><p>Conciergerie de luxe, business affairs et lifestyle management.<br>French Riviera · Monaco · Maroc.</p><div style="margin-top:1.8rem;"><a href="https://instagram.com/legrand_group_management" target="_blank" class="social-link" style="color:rgba(255,255,255,0.35);font-size:0.65rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> @legrand_group_management</a></div></div>
+      <div class="footer-brand"><img src="logo_legrandgroup_light.png" alt="Legrand Group Management"><p>Conciergerie de luxe, business affairs et lifestyle management.<br>French Riviera · Monaco · Maroc.</p><div style="margin-top:1.8rem;"><a href="https://instagram.com/legrand_group_management" target="_blank" class="social-link" style="color:rgba(255,255,255,0.35);font-size:0.65rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> @legrand_group_management</a></div></div>
       <div class="footer-col"><h5>Navigation</h5><ul><li><a href="#about" data-i18n="nav_about">À propos</a></li><li><a href="#services" data-i18n="nav_services">Services</a></li><li><a href="#corporate" data-i18n="nav_corporate">Corporate</a></li><li><a href="#zones" data-i18n="nav_zones">Zones</a></li><li><a href="#testimonials">Avis clients</a></li><li><a href="#faq">FAQ</a></li></ul></div>
       <div class="footer-col"><h5>Services</h5><ul><li><a href="#services">Business Affairs</a></li><li><a href="#services">Immobilier de Prestige</a></li><li><a href="#services">Événementiel &amp; RP</a></li><li><a href="#services">Style de Vie</a></li><li><a href="#corporate">Conciergerie Corporate</a></li></ul></div>
       <div class="footer-col"><h5>Contact</h5><ul><li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="791a16170d181a0d39151c1e0b18171d1e0b160c09141817181e1c141c170d571a1614">[email&#160;protected]</a></li><li>+33 (0) 7 82 74 83 83</li><li>French Riviera</li><li>Monaco</li><li>Maroc</li></ul></div>
