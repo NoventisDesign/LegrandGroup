@@ -30,6 +30,8 @@ p{line-height:1.85;font-weight:300;font-size:0.93rem;}
 /* FILIGRANE */
 .wm{position:absolute;pointer-events:none;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);}
 .wm img{width:100%;display:block;opacity:1;}
+.heading-block{position:relative;isolation:isolate;}
+.services-intro>.wm,.prest-header>.wm,.zones-header>.wm,.testi-header>.wm,.faq-header>.wm,.heading-block>.wm{z-index:-1;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s ease;background:transparent;}
@@ -351,7 +353,6 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="wm about-wm"><img src="logo_legrandgroup.png" alt=""></div>
   <div class="container">
     <div class="about-grid">
       <div class="about-img-wrap">
@@ -359,9 +360,12 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
         
       </div>
       <div>
-        <span class="label">Notre histoire</span>
-        <h2>L'art du service<br><em class="italic">à son sommet</em></h2>
-        <div class="divider divider-left"></div>
+        <div class="heading-block">
+          <div class="wm about-wm"><img src="logo_legrandgroup.png" alt=""></div>
+          <span class="label">Notre histoire</span>
+          <h2>L'art du service<br><em class="italic">à son sommet</em></h2>
+          <div class="divider divider-left"></div>
+        </div>
         <p style="margin-bottom:1.2rem;">Legrand Group Management est né d'une conviction profonde : chaque client mérite un service façonné avec soin, discrétion et une expertise sans compromis. Nous accompagnons une clientèle de prestige — entrepreneurs, dirigeants, personnalités — dans la gestion de leur vie professionnelle et personnelle.</p>
         <p>Notre approche repose sur trois piliers : la <strong>réactivité</strong>, la <strong>confidentialité</strong> et l'<strong>excellence opérationnelle</strong>. Chaque demande est traitée comme une priorité absolue, par des conseillers dédiés qui anticipent vos besoins.</p>
         <div class="stats-row">
@@ -376,9 +380,9 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 
 <!-- SERVICES -->
 <section id="services">
-  <div class="wm services-wm"><img src="logo_legrandgroup.png" alt=""></div>
   <div class="container">
     <div class="services-intro">
+      <div class="wm services-wm"><img src="logo_legrandgroup.png" alt=""></div>
       <span class="label">Nos domaines d'excellence</span>
       <h2>Des services pensés<br>pour <em class="italic">l'exception</em></h2>
     </div>
@@ -410,12 +414,14 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 <!-- CORPORATE -->
 <section id="corporate">
   <div class="corp-bg"></div>
-  <div class="wm corp-wm"><img src="logo_legrandgroup_light.png" alt=""></div>
   <div class="corp-grid">
     <div class="corp-left">
-      <span class="label">Pour les entreprises exigeantes</span>
-      <h2>Un concierge<br><em class="italic">au cœur de<br>vos équipes</em></h2>
-      <div class="corp-divider"></div>
+      <div class="heading-block">
+        <div class="wm corp-wm"><img src="logo_legrandgroup_light.png" alt=""></div>
+        <span class="label">Pour les entreprises exigeantes</span>
+        <h2>Un concierge<br><em class="italic">au cœur de<br>vos équipes</em></h2>
+        <div class="corp-divider"></div>
+      </div>
       <p class="corp-intro">Imaginez un concierge de palace — présent chaque matin à votre accueil d'entreprise.</p>
       <p class="corp-body">Legrand Group Management déploie ses concierges directement dans vos locaux. Positionné à votre banque d'accueil, notre représentant prend en charge, avec la même exigence qu'un grand palace, les besoins du quotidien de vos collaborateurs : pressing, réservations, courses, gestion de colis, billets, démarches administratives.</p>
       <p class="corp-body">Ce n'est pas une prestation. C'est une présence — humaine, discrète, constante. Pour les grands groupes et les entreprises qui font du bien-être un marqueur de leur identité.</p>
@@ -437,9 +443,9 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 
 <!-- PRESTATIONS -->
 <section id="prestations">
-  <div class="wm prest-wm"><img src="logo_legrandgroup.png" alt=""></div>
   <div class="container">
     <div class="prest-header">
+      <div class="wm prest-wm"><img src="logo_legrandgroup.png" alt=""></div>
       <span class="label">Détail de l'offre</span>
       <h2>Nos Prestations</h2>
       <div class="divider"></div>
@@ -455,8 +461,8 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 
 <!-- ZONES -->
 <section id="zones">
-  <div class="wm zones-wm"><img src="logo_legrandgroup_light.png" alt=""></div>
   <div class="zones-header">
+    <div class="wm zones-wm"><img src="logo_legrandgroup_light.png" alt=""></div>
     <span class="label">Présence internationale</span>
     <h2>Nos Zones<br><em class="italic">d'Intervention</em></h2>
     <div class="divider"></div>
@@ -482,9 +488,9 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
-  <div class="wm testi-wm"><img src="logo_legrandgroup.png" alt=""></div>
   <div class="container">
     <div class="testi-header">
+      <div class="wm testi-wm"><img src="logo_legrandgroup.png" alt=""></div>
       <span class="label">Ce que disent nos clients</span>
       <h2>Ils nous font confiance</h2>
       <div class="divider"></div>
@@ -502,9 +508,9 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 
 <!-- FAQ -->
 <section id="faq">
-  <div class="wm faq-wm"><img src="logo_legrandgroup.png" alt=""></div>
   <div class="container">
     <div class="faq-header">
+      <div class="wm faq-wm"><img src="logo_legrandgroup.png" alt=""></div>
       <span class="label">Questions fréquentes</span>
       <h2>Tout ce que vous<br>souhaitez <em class="italic">savoir</em></h2>
       <div class="divider"></div>
@@ -524,13 +530,15 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="wm contact-wm"><img src="logo_legrandgroup.png" alt=""></div>
   <div class="container">
     <div class="contact-grid">
       <div class="contact-left">
-        <span class="label">Prendre contact</span>
-        <h2>Parlons de<br><em class="italic">votre projet</em></h2>
-        <div class="divider divider-left"></div>
+        <div class="heading-block">
+          <div class="wm contact-wm"><img src="logo_legrandgroup.png" alt=""></div>
+          <span class="label">Prendre contact</span>
+          <h2>Parlons de<br><em class="italic">votre projet</em></h2>
+          <div class="divider divider-left"></div>
+        </div>
         <p>Chaque relation commence par une conversation. Nous vous invitons à nous contacter pour un premier entretien confidentiel, sans engagement.</p>
         <div class="contact-details">
           <div class="c-detail"><div class="c-icon">✉</div><div><span class="c-label">Email</span><span class="c-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0c6f6362786d6f784c60696b7e6d62686b7e63797c616d626d6b6961696278226f6361">[email&#160;protected]</a></span></div></div>
