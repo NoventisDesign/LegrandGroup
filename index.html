@@ -562,7 +562,7 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
       <div class="footer-brand"><img src="logo_legrandgroup_light.png" alt="Legrand Group Management"><p>Conciergerie de luxe, business affairs et lifestyle management.<br>French Riviera · Monaco · Maroc.</p><div style="margin-top:1.8rem;"><a href="https://instagram.com/legrand_group_management" target="_blank" class="social-link" style="color:rgba(255,255,255,0.35);font-size:0.65rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> @legrand_group_management</a></div></div>
       <div class="footer-col"><h5>Navigation</h5><ul><li><a href="#about" data-i18n="nav_about">À propos</a></li><li><a href="#services" data-i18n="nav_services">Services</a></li><li><a href="#corporate" data-i18n="nav_corporate">Corporate</a></li><li><a href="#zones" data-i18n="nav_zones">Zones</a></li><li><a href="#testimonials">Avis clients</a></li><li><a href="#faq">FAQ</a></li></ul></div>
       <div class="footer-col"><h5>Services</h5><ul><li><a href="#services">Business Affairs</a></li><li><a href="#services">Immobilier de Prestige</a></li><li><a href="#services">Événementiel &amp; RP</a></li><li><a href="#services">Style de Vie</a></li><li><a href="#corporate">Conciergerie Corporate</a></li></ul></div>
-      <div class="footer-col"><h5>Contact</h5><ul><li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="791a16170d181a0d39151c1e0b18171d1e0b160c09141817181e1c141c170d571a1614">[email&#160;protected]</a></li><li>+33 (0) 7 82 74 83 83</li><li>French Riviera</li><li>Monaco</li><li>Maroc</li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:contact@legrandgroupmanagement.com">contact@legrandgroupmanagement.com</a></li><li>+33 (0) 7 82 74 83 83</li><li>French Riviera</li><li>Monaco</li><li>Maroc</li></ul></div>
     </div>
     <div class="footer-bottom">
       <p>© 2025 Legrand Group Management. Tous droits réservés.</p>
@@ -619,16 +619,19 @@ function sendForm(){
       _template:'table'
     })
   }).then(r=>r.json()).then(d=>{
-    if(d.success==='true'||d.success===true){
+    const ok=d.success==='true'||d.success===true;
+    const activation=(d.message||'').toLowerCase().includes('activ');
+    if(ok){
       showStatus('Merci, votre demande a bien été envoyée. Réponse sous 24 heures ouvrées.','#1e7e34');
       ['fname','lname','email','phone','service','message'].forEach(id=>document.getElementById(id).value='');
-      btn.textContent='Envoyer ma demande';
-      btn.disabled=false;
+    }else if(activation){
+      showStatus("Votre demande sera transmise dès l'activation du formulaire (procédure en cours côté administrateur). Merci de votre patience.",'#1e7e34');
+      ['fname','lname','email','phone','service','message'].forEach(id=>document.getElementById(id).value='');
     }else{
       showStatus("Une erreur est survenue. Merci de réessayer ou de nous écrire à contact@legrandgroupmanagement.com.",'#c0392b');
-      btn.textContent='Envoyer ma demande';
-      btn.disabled=false;
     }
+    btn.textContent='Envoyer ma demande';
+    btn.disabled=false;
   }).catch(()=>{
     showStatus("Erreur réseau. Merci de réessayer ou de nous écrire à contact@legrandgroupmanagement.com.",'#c0392b');
     btn.textContent='Envoyer ma demande';
