@@ -293,6 +293,179 @@ footer{background:var(--dark-2);color:rgba(255,255,255,0.5);padding:5rem 5% 2.5r
   .stats-row{gap:1.5rem;}
   .hero-locales,.corp-quote,.wm,.hero-wm{display:none;}
 }
+
+/* ============================================================
+   PREMIUM ENHANCEMENT LAYER — animations, micro-interactions,
+   glassmorphism, parallax helpers, custom cursor. No structural
+   changes. Hardware-accelerated only (transform + opacity).
+   ============================================================ */
+
+/* Scroll-reveal — fade-up + soft blur dissipation */
+.reveal{opacity:0;transform:translate3d(0,40px,0);filter:blur(6px);transition:opacity 1.1s cubic-bezier(0.22,0.61,0.36,1),transform 1.1s cubic-bezier(0.22,0.61,0.36,1),filter 1.1s ease;will-change:opacity,transform,filter;}
+.reveal.in-view{opacity:1;transform:translate3d(0,0,0);filter:blur(0);}
+.reveal-left{transform:translate3d(-32px,12px,0);}
+.reveal-left.in-view{transform:translate3d(0,0,0);}
+.reveal-right{transform:translate3d(32px,12px,0);}
+.reveal-right.in-view{transform:translate3d(0,0,0);}
+.reveal-scale{transform:translate3d(0,32px,0) scale(0.97);}
+.reveal-scale.in-view{transform:translate3d(0,0,0) scale(1);}
+
+@media (prefers-reduced-motion: reduce){
+  .reveal,.reveal-left,.reveal-right,.reveal-scale{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;}
+}
+
+/* Navbar — true glassmorphism with edge refraction */
+nav{transition:background 0.55s cubic-bezier(0.22,0.61,0.36,1),padding 0.4s cubic-bezier(0.22,0.61,0.36,1),box-shadow 0.55s ease,backdrop-filter 0.55s ease,border-color 0.55s ease;}
+nav.scrolled{
+  background:linear-gradient(180deg,rgba(255,255,255,0.86) 0%,rgba(255,255,255,0.74) 100%)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(140%);
+  backdrop-filter:blur(22px) saturate(140%);
+  box-shadow:0 1px 0 rgba(201,168,76,0.18),0 14px 40px -22px rgba(15,12,8,0.18),inset 0 1px 0 rgba(255,255,255,0.7);
+  border-bottom:1px solid rgba(201,168,76,0.12);
+}
+
+/* Nav links — gold underline already exists; keep restrained */
+.nav-links a{transition:color 0.35s ease;}
+
+/* Nav CTA — sliding gold fill */
+.nav-cta{position:relative;overflow:hidden;isolation:isolate;z-index:1;transition:color 0.45s ease;}
+.nav-cta::before{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:right center;transition:transform 0.6s cubic-bezier(0.65,0,0.35,1);z-index:-1;}
+.nav-cta:hover::before{transform:scaleX(1);transform-origin:left center;}
+.nav-cta:hover{color:var(--white);}
+
+/* Lang buttons */
+.lang-btn{transition:color 0.4s ease,transform 0.35s ease;}
+.lang-btn:hover{transform:translateY(-1px);}
+
+/* Premium buttons — shimmer + magnetic lift */
+.btn{position:relative;overflow:hidden;isolation:isolate;will-change:transform;transition:background 0.45s cubic-bezier(0.22,0.61,0.36,1),transform 0.4s cubic-bezier(0.22,0.61,0.36,1),box-shadow 0.5s ease,letter-spacing 0.4s ease,color 0.4s ease,border-color 0.4s ease;}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,0.22) 45%,transparent 90%);transform:translateX(-110%) skewX(-12deg);transition:transform 0.95s cubic-bezier(0.22,0.61,0.36,1);z-index:0;pointer-events:none;}
+.btn:hover::after{transform:translateX(110%) skewX(-12deg);}
+.btn:active{transform:translateY(-1px) scale(0.985);}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 22px 44px -22px rgba(201,168,76,0.6),0 6px 16px -10px rgba(154,120,48,0.45);letter-spacing:0.26em;}
+.btn-outline:hover{transform:translateY(-3px);background:rgba(201,168,76,0.06);letter-spacing:0.26em;}
+
+/* Service cards — premium hover */
+.svc-card{cursor:pointer;will-change:transform;transition:transform 0.75s cubic-bezier(0.22,0.61,0.36,1),box-shadow 0.7s ease;}
+.svc-card::before{content:"";position:absolute;inset:0;border:1px solid transparent;z-index:3;pointer-events:none;transition:border-color 0.6s ease,inset 0.5s ease;}
+.svc-card::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transform-origin:center;transition:transform 0.7s cubic-bezier(0.22,0.61,0.36,1);z-index:3;}
+.svc-card:hover{transform:translateY(-8px);box-shadow:0 32px 64px -28px rgba(15,12,8,0.55);}
+.svc-card:hover::before{border-color:rgba(201,168,76,0.45);}
+.svc-card:hover::after{transform:scaleX(1);}
+.svc-num{transition:letter-spacing 0.5s ease,color 0.4s ease;}
+.svc-card:hover .svc-num{letter-spacing:0.35em;color:var(--gold-light);}
+
+/* Zone cards — premium hover */
+.zone-card{cursor:pointer;transition:transform 0.75s cubic-bezier(0.22,0.61,0.36,1),box-shadow 0.7s ease;}
+.zone-card::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform 0.7s cubic-bezier(0.22,0.61,0.36,1);z-index:3;}
+.zone-card:hover{transform:translateY(-6px);box-shadow:0 32px 64px -28px rgba(0,0,0,0.7);}
+.zone-card:hover::after{transform:scaleX(1);}
+.zone-sub{transition:letter-spacing 0.55s ease;}
+.zone-card:hover .zone-sub{letter-spacing:0.28em;}
+
+/* Testimonial cards — lift + gold border */
+.testi-card{transition:transform 0.55s cubic-bezier(0.22,0.61,0.36,1),box-shadow 0.55s ease,border-color 0.5s ease,background 0.4s ease;will-change:transform;}
+.testi-card:hover{transform:translateY(-5px);box-shadow:0 28px 54px -30px rgba(15,12,8,0.28);border-color:rgba(201,168,76,0.45);}
+.testi-card::before{transition:opacity 0.6s ease,transform 0.6s cubic-bezier(0.22,0.61,0.36,1);}
+.testi-card:hover::before{opacity:0.18;transform:translate(0,-4px);}
+.t-avatar{transition:transform 0.55s cubic-bezier(0.22,0.61,0.36,1),box-shadow 0.5s ease;}
+.testi-card:hover .t-avatar{transform:scale(1.08) rotate(-4deg);box-shadow:0 8px 20px -8px rgba(201,168,76,0.6);}
+
+/* FAQ — premium hover */
+.faq-q{transition:color 0.4s ease,padding-left 0.45s cubic-bezier(0.22,0.61,0.36,1);}
+.faq-q:hover{padding-left:0.7rem;}
+.faq-item{transition:background 0.5s ease;}
+.faq-item:hover{background:linear-gradient(90deg,rgba(201,168,76,0.05) 0%,transparent 75%);}
+
+/* Stats row — premium counter */
+.stat-num{transition:color 0.5s ease,letter-spacing 0.6s ease,transform 0.55s cubic-bezier(0.22,0.61,0.36,1);display:inline-block;}
+.stats-row > div{cursor:default;transition:transform 0.55s cubic-bezier(0.22,0.61,0.36,1);}
+.stats-row > div:hover{transform:translateY(-4px);}
+.stats-row > div:hover .stat-num{color:var(--gold-light);letter-spacing:0.015em;}
+
+/* Form inputs — premium focus */
+.form-group input,.form-group select,.form-group textarea{transition:border-color 0.4s ease,background 0.4s ease,box-shadow 0.45s ease;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{background:var(--white);box-shadow:0 0 0 3px rgba(201,168,76,0.12);}
+.form-group label{transition:color 0.35s ease,letter-spacing 0.4s ease;}
+.form-group:focus-within label{color:var(--gold);letter-spacing:0.25em;}
+
+/* Form submit — vertical gold sweep */
+.form-submit{position:relative;overflow:hidden;isolation:isolate;transition:background 0.4s ease,color 0.4s ease,transform 0.35s cubic-bezier(0.22,0.61,0.36,1);}
+.form-submit::before{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleY(0);transform-origin:bottom center;transition:transform 0.55s cubic-bezier(0.65,0,0.35,1);z-index:-1;}
+.form-submit:hover::before{transform:scaleY(1);transform-origin:top center;}
+.form-submit:active{transform:scale(0.985);}
+
+/* Contact details icon hover */
+.c-icon{transition:border-color 0.4s ease,background 0.4s ease,color 0.4s ease,transform 0.45s cubic-bezier(0.22,0.61,0.36,1);}
+.c-detail:hover .c-icon{background:var(--gold);color:var(--white);border-color:var(--gold);transform:rotate(-6deg) scale(1.06);}
+
+/* Social link hover */
+.social-link{transition:opacity 0.35s ease,color 0.35s ease;}
+.social-link:hover{opacity:1;color:var(--gold-dark);}
+
+/* Footer credit */
+.footer-credit{transition:color 0.4s ease,transform 0.4s cubic-bezier(0.22,0.61,0.36,1);}
+.footer-credit:hover{transform:translateX(-3px);}
+
+/* Hero — parallax-friendly */
+.hero-bg{will-change:transform;}
+.hero-content{will-change:transform,opacity;}
+
+/* Hamburger micro-morph */
+.hamburger{transition:transform 0.4s cubic-bezier(0.22,0.61,0.36,1);}
+.hamburger:hover{transform:rotate(-6deg);}
+.hamburger span{transition:transform 0.45s cubic-bezier(0.22,0.61,0.36,1),background 0.35s ease,opacity 0.35s ease;}
+
+/* Custom cursor — desktop only, gold-accent ring + dot */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;will-change:transform;transform:translate(-50%,-50%);}
+.cursor-dot{width:6px;height:6px;background:var(--gold);transition:width 0.3s cubic-bezier(0.22,0.61,0.36,1),height 0.3s cubic-bezier(0.22,0.61,0.36,1),background 0.3s ease,opacity 0.3s ease;}
+.cursor-ring{width:38px;height:38px;border:1px solid rgba(201,168,76,0.55);transition:width 0.4s cubic-bezier(0.22,0.61,0.36,1),height 0.4s cubic-bezier(0.22,0.61,0.36,1),border-color 0.4s ease,background 0.4s ease,opacity 0.35s ease;}
+body.cursor-active{cursor:none;}
+body.cursor-active a,body.cursor-active button,body.cursor-active input,body.cursor-active textarea,body.cursor-active select,body.cursor-active label,body.cursor-active .svc-card,body.cursor-active .zone-card,body.cursor-active .testi-card,body.cursor-active .faq-q{cursor:none;}
+.cursor-hover .cursor-dot{width:0;height:0;opacity:0;}
+.cursor-hover .cursor-ring{width:48px;height:48px;border-color:rgba(201,168,76,0.9);background:rgba(201,168,76,0.05);}
+.cursor-text .cursor-ring{width:18px;height:18px;background:rgba(201,168,76,0.85);border-color:transparent;}
+.cursor-text .cursor-dot{opacity:0;}
+.cursor-dark .cursor-dot{background:var(--gold-light);}
+.cursor-dark .cursor-ring{border-color:rgba(226,201,126,0.65);}
+.cursor-hover.cursor-dark .cursor-ring{border-color:rgba(226,201,126,0.95);background:rgba(226,201,126,0.08);}
+@media (max-width:1024px),(pointer:coarse){
+  .cursor-dot,.cursor-ring{display:none!important;}
+  body.cursor-active,body.cursor-active *{cursor:auto!important;}
+}
+@media (prefers-reduced-motion: reduce){
+  .cursor-dot,.cursor-ring{display:none;}
+}
+
+/* Section padding optical balance + scroll arrival glow */
+section{position:relative;}
+section::before{content:"";position:absolute;top:0;left:50%;width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.35),transparent);transform:translateX(-50%);transition:width 1.4s cubic-bezier(0.22,0.61,0.36,1);pointer-events:none;}
+section.section-active::before{width:240px;}
+
+/* About — image kenburn-on-reveal */
+.about-img-wrap img{transition:transform 1.6s cubic-bezier(0.22,0.61,0.36,1),filter 1.6s ease;}
+.about-img-wrap.in-view img{animation:abtKen 22s ease-in-out infinite alternate;}
+@keyframes abtKen{from{transform:scale(1.02) translateY(0);}to{transform:scale(1.08) translateY(-1.5%);}}
+
+/* Corporate image — subtle ken-burn */
+.corp-img{transition:transform 1.8s cubic-bezier(0.22,0.61,0.36,1);}
+.corp-right.in-view .corp-img{animation:corpKen 24s ease-in-out infinite alternate;}
+@keyframes corpKen{from{transform:scale(1.01);}to{transform:scale(1.06);}}
+
+/* Hero scroll hint — gentle */
+.hero-scroll-line{transform-origin:top;}
+
+/* Prest column hover — gentle indent */
+.prest-col{transition:transform 0.55s cubic-bezier(0.22,0.61,0.36,1);}
+.prest-col:hover{transform:translateY(-4px);}
+.prest-col li{transition:transform 0.4s cubic-bezier(0.22,0.61,0.36,1),color 0.35s ease;}
+.prest-col li:hover{transform:translateX(4px);color:var(--dark);}
+.prest-col li:hover::before{color:var(--gold-dark);}
+
+/* Footer columns hover */
+.footer-col a{transition:color 0.35s ease,padding-left 0.4s cubic-bezier(0.22,0.61,0.36,1);}
+.footer-col a:hover{padding-left:0.4rem;}
+
 </style>
 </head>
 <body>
@@ -793,6 +966,270 @@ function setLang(lang){
   // Footer
   const fc=document.querySelector('.footer-bottom p');if(fc)fc.textContent=t.footer_copy;
 }
+</script>
+
+<script>
+/* ============================================================
+   PREMIUM MOTION LAYER — vanilla JS, no external libs.
+   - IntersectionObserver scroll-reveal
+   - Subtle parallax on hero (rAF-throttled)
+   - Animated counters on stats
+   - Custom gold cursor (desktop only, respects pointer + reduced motion)
+   - Magnetic hover on primary CTAs
+   ============================================================ */
+(function(){
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 1. Scroll-reveal ---------- */
+  const revealMap = [
+    ['#intro-band p', 'reveal'],
+    ['#about .about-img-wrap', 'reveal reveal-left'],
+    ['#about .heading-block > .label', 'reveal'],
+    ['#about .heading-block > h2', 'reveal reveal-delay-1'],
+    ['#about .heading-block > .divider', 'reveal reveal-delay-2'],
+    ['#about .heading-block > p', 'reveal reveal-delay-2'],
+    ['#about .stats-row', 'reveal reveal-delay-3'],
+    ['.services-intro > *', 'reveal'],
+    ['.svc-card', 'reveal reveal-scale'],
+    ['#corporate .corp-left > *', 'reveal'],
+    ['#corporate .corp-right', 'reveal reveal-right'],
+    ['.prest-header > *', 'reveal'],
+    ['.prest-col', 'reveal reveal-scale'],
+    ['.zones-header > *', 'reveal'],
+    ['.zone-card', 'reveal reveal-scale'],
+    ['.testi-header > *', 'reveal'],
+    ['.testi-card', 'reveal reveal-scale'],
+    ['.faq-header > *', 'reveal'],
+    ['.faq-item', 'reveal'],
+    ['.contact-left > *', 'reveal'],
+    ['.contact-form', 'reveal reveal-right'],
+    ['.footer-brand', 'reveal'],
+    ['.footer-col', 'reveal']
+  ];
+  revealMap.forEach(([sel, cls]) => {
+    document.querySelectorAll(sel).forEach(el => {
+      cls.split(' ').forEach(c => el.classList.add(c));
+    });
+  });
+
+  // Stagger grouped reveals
+  function stagger(parentSel, childSel, step){
+    const s = step || 90;
+    document.querySelectorAll(parentSel).forEach(parent => {
+      parent.querySelectorAll(childSel).forEach((el,i) => {
+        el.style.transitionDelay = Math.min(i,6) * s + 'ms';
+      });
+    });
+  }
+  stagger('.stats-row','div',110);
+  stagger('.services-grid','.svc-card',110);
+  stagger('.prest-grid','.prest-col',100);
+  stagger('.zones-grid','.zone-card',130);
+  stagger('.testi-grid','.testi-card',90);
+  stagger('.faq-list','.faq-item',60);
+  stagger('.footer-grid','.footer-col',90);
+
+  if(prefersReduced){
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.12,rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }
+
+  /* ---------- 2. Section accent line on arrival ---------- */
+  const sIo = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) entry.target.classList.add('section-active');
+    });
+  },{threshold:0.18});
+  document.querySelectorAll('section').forEach(s => sIo.observe(s));
+
+  /* ---------- 3. Unified scroll handler — parallax + cursor-dark ---------- */
+  // Single rAF-throttled listener handles hero parallax AND cursor tint
+  const heroBg = document.querySelector('.hero-bg');
+  const heroContent = document.querySelector('.hero-content');
+  const heroScroll = document.querySelector('.hero-scroll');
+  const darkSelectors = ['#hero','#intro-band','#corporate','#zones','footer'];
+  const darkEls = darkSelectors.map(s => document.querySelector(s)).filter(Boolean);
+  let scrollTicking = false;
+  function onScrollFrame(){
+    const y = window.scrollY;
+    const vh = window.innerHeight;
+    // Parallax
+    if(!prefersReduced && y < vh * 1.3){
+      if(heroBg){
+        const ty = Math.min(y * 0.22, vh * 0.4);
+        heroBg.style.transform = 'translate3d(0,' + ty.toFixed(1) + 'px,0) scale(1.03)';
+      }
+      if(heroContent){
+        const cy = y * 0.12;
+        const op = Math.max(0, 1 - y / (vh * 0.8));
+        heroContent.style.transform = 'translate3d(0,' + cy.toFixed(1) + 'px,0)';
+        heroContent.style.opacity = op.toFixed(3);
+      }
+      if(heroScroll){
+        heroScroll.style.opacity = String(Math.max(0, 1 - y / 240));
+      }
+    }
+    // Cursor-dark — only if cursor is active
+    if(document.body.classList.contains('cursor-active')){
+      let dark = false;
+      const cy2 = vh * 0.5;
+      for(let i=0;i<darkEls.length;i++){
+        const r = darkEls[i].getBoundingClientRect();
+        if(r.top <= cy2 && r.bottom >= cy2){ dark = true; break; }
+      }
+      document.body.classList.toggle('cursor-dark', dark);
+    }
+    scrollTicking = false;
+  }
+  function onScroll(){
+    if(scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(onScrollFrame);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* ---------- 4. Animated counters ---------- */
+  if(!prefersReduced){
+    const stats = document.querySelectorAll('.stat-num');
+    stats.forEach(el => {
+      const txt = el.textContent.trim();
+      const m = txt.match(/^(\d+)(.*)$/);
+      if(!m) return;
+      const finalNum = parseInt(m[1],10);
+      const suffix = m[2] || '';
+      if(suffix.includes('/')) return; // skip "24/7" — looks weird animated
+      el.dataset.final = txt;
+      el.dataset.num = String(finalNum);
+      el.dataset.suffix = suffix;
+      el.textContent = '0' + suffix;
+    });
+    function animateCounter(el){
+      const target = parseInt(el.dataset.num,10);
+      const suffix = el.dataset.suffix || '';
+      if(isNaN(target)){ el.textContent = el.dataset.final; return; }
+      const duration = target > 100 ? 1800 : 1300;
+      const t0 = performance.now();
+      function frame(now){
+        const p = Math.min(1, (now - t0) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = Math.round(target * eased);
+        el.textContent = val + suffix;
+        if(p < 1) requestAnimationFrame(frame);
+        else el.textContent = el.dataset.final;
+      }
+      requestAnimationFrame(frame);
+    }
+    const cIo = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting && entry.target.dataset.num){
+          animateCounter(entry.target);
+          cIo.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.55});
+    stats.forEach(el => { if(el.dataset.num) cIo.observe(el); });
+  }
+
+  /* ---------- 5. Custom gold cursor ---------- */
+  const isFinePointer = window.matchMedia('(pointer:fine)').matches;
+  const wideEnough = window.innerWidth >= 1025;
+  if(!prefersReduced && isFinePointer && wideEnough){
+    const dot = document.createElement('div');
+    const ring = document.createElement('div');
+    dot.className = 'cursor-dot';
+    ring.className = 'cursor-ring';
+    dot.setAttribute('aria-hidden','true');
+    ring.setAttribute('aria-hidden','true');
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+    document.body.classList.add('cursor-active');
+
+    let mx = window.innerWidth/2, my = window.innerHeight/2;
+    let dx = mx, dy = my;
+    let rx = mx, ry = my;
+    let visible = false;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      if(!visible){ visible = true; dot.style.opacity = '1'; ring.style.opacity = '1'; }
+    });
+    document.addEventListener('mouseleave', () => {
+      dot.style.opacity = '0'; ring.style.opacity = '0'; visible = false;
+    });
+    document.addEventListener('mouseenter', () => {
+      visible = true; dot.style.opacity = '1'; ring.style.opacity = '1';
+    });
+
+    function tick(){
+      dx += (mx - dx) * 0.42;
+      dy += (my - dy) * 0.42;
+      rx += (mx - rx) * 0.16;
+      ry += (my - ry) * 0.16;
+      dot.style.transform = 'translate3d(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px,0) translate(-50%,-50%)';
+      ring.style.transform = 'translate3d(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px,0) translate(-50%,-50%)';
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    const hoverSel = 'a, button, input, textarea, select, label, .svc-card, .zone-card, .testi-card, .faq-q';
+    function bindHover(el){
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    }
+    document.querySelectorAll(hoverSel).forEach(bindHover);
+
+    // Initial cursor-dark tint check (scroll handler above keeps it updated)
+    onScrollFrame();
+  }
+
+  /* ---------- 6. Magnetic hover on primary buttons ---------- */
+  if(!prefersReduced && window.matchMedia('(pointer:fine)').matches){
+    const magnets = document.querySelectorAll('.btn-gold, .nav-cta, .form-submit');
+    magnets.forEach(el => {
+      const strength = el.classList.contains('btn-gold') ? 0.22 : 0.16;
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        const cx = r.left + r.width/2;
+        const cy = r.top + r.height/2;
+        const dx = (e.clientX - cx) * strength;
+        const dy = (e.clientY - cy) * strength;
+        el.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + (dy - 3).toFixed(1) + 'px)';
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+      });
+    });
+  }
+
+  /* ---------- 7. Patch a tiny pre-existing bug (kept compatible) ---------- */
+  // Existing showLegal() calls document.getById which is invalid; soft-patch.
+  if(typeof window.showLegal === 'function'){
+    const _showLegal = window.showLegal;
+    window.showLegal = function(type){
+      try{ _showLegal(type); }
+      catch(_){
+        const c = (window.legal && window.legal[type]) || null;
+        if(!c) return;
+        document.getElementById('legal-title').textContent = c.title;
+        document.getElementById('legal-subtitle').textContent = c.subtitle;
+        document.getElementById('legal-body').innerHTML = c.body;
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('legal-page').classList.add('active');
+        window.scrollTo({top:0,behavior:'smooth'});
+        document.getElementById('navbar').classList.add('scrolled');
+      }
+    };
+  }
+})();
 </script>
 </body>
 </html>
